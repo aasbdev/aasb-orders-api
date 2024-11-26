@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 FROM maven:3.9.0-eclipse-temurin-17-alpine AS build
 # Set environment variables for Maven build
 ARG MAVEN_CLI_OPTS
 ENV MAVEN_CLI_OPTS=${MAVEN_CLI_OPTS:-"-DskipTests"}
 
-=======
-FROM maven:3.8.5-openjdk-17 AS build
->>>>>>> 5b5949e59d30103faa20927943c8e6bac69a15f8
 WORKDIR /build
 COPY . .  
 
@@ -34,4 +30,3 @@ ENTRYPOINT ["java", "-jar", "app.jar", \
   "--spring.datasource.url=${SPRING_DATASOURCE_URL}", \
   "--spring.datasource.username=${SPRING_DATASOURCE_USERNAME}", \
   "--spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}"]
-
