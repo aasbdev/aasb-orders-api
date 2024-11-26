@@ -1,0 +1,72 @@
+server:
+ port: 8091
+ servlet:
+   context-path: /api/v1
+   
+spring:
+  application:
+    name: aasb-orders
+  messages:
+    basename: messages
+    encoding: UTF-8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/orders?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo
+    username: root
+    password: example 
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none       
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect      
+    show-sql: true
+  main:
+    allow-bean-definition-overriding: true 
+    allow-circular-references: true
+
+
+# jwt
+#15mim - 900000
+#1h - 3600000 
+#24h  -  86400000
+app:
+  domain:
+    url: http://localhost:5173  
+  feign:
+    config:
+      name: auth-client
+      url: localhost:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health, info, metrics'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+
+springdoc:
+  paths-to-match: 
+    - /**
+  swagger-ui:
+    use-root-path: true    
+    path: /swagger-ui.html
+    default-models-expand-depth: -1
+    operations-sorter: alpha
+
+logging:
+  file:
+    name: ./data/logs/log-file.log  
+  pattern:
+    level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}]"
+    
+ ## Configuring info endpoint
+info:
+  app:
+    name: Orders Microservice
+    description: AASB Orders Applications
+    version: 1.0.0

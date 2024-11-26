@@ -1,0 +1,66 @@
+server:
+  servlet:
+   context-path: /api/v1
+
+spring:
+  flyway:
+    enabled: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    name: ${DATABASE_POSTGRES_NAME:testDB}
+    url: ${DATABASE_POSTGRES_URL:jdbc:postgres://127.0.0.1:5432/${spring.datasource.name}}
+    username: ${DATABASE_POSTGRES_USERNAME:postgres}
+    password: ${DATABASE_POSTGRES_PASSWORD:Postgres@123}
+    hikari:
+      connection-test-query: SELECT 1
+  jpa:
+    show-sql: ${DATABASE_JPA_SHOW_SQL:true}
+    hibernate:
+      ddl-auto: ${DATABASE_JPA_DDL_AUTO:create-drop}
+    properties:
+      hibernate:
+        jdbc.lob.non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect    
+app:
+  domain:
+    url: http://localhost:5173        
+  feign:
+    config:
+      name: auth-client
+      url: localhost:${local.server.port}
+      
+springdoc:
+  paths-to-match:
+  - /api/**/v1/**
+  swagger-ui:
+    use-root-path: true
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+ 
+
+logging:
+  file:
+    name: ./data/logs/log-file.log  
+  pattern:
+    level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}]"
+    
+## Configuring info endpoint
+info:
+  app:
+    name: Orders Microservice
+    description: AASB Orders Applications
+    version: 1.0.0
