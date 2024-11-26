@@ -39,9 +39,9 @@ services:
     restart: on-failure
     environment:
        SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://localhost:3306/aasb-plataforma?createDatabaseIfNotExist=true&useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo",
+        "spring.datasource.url"  : "jdbc:mysql://localhost:3306/orders?createDatabaseIfNotExist=true&useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo",
         "spring.datasource.username" : "root",
-        "spring.datasource.password" : "root"       
+        "spring.datasource.password" : "example"       
         }'
     ports:
       - 8091:8091
