@@ -1,4 +1,4 @@
-package br.com.aasb.orders.presentation.consumer;
+package br.com.aasb.orders.presentation;
 
 import java.io.InputStream;
 import java.util.List;
@@ -15,7 +15,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import br.com.aasb.orders.application.dto.OrderDto;
 import br.com.aasb.orders.domain.model.OrderEvent;
 import br.com.aasb.orders.infra.message.OrderMessage;
-import br.com.aasb.orders.presentation.StatusResouce;
 
 public class ProdutoADadosResources {
 

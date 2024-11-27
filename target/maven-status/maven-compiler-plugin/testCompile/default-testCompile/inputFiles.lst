@@ -1,5 +1,5 @@
-/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/plataforma/domain/RestResponsePage.java
-/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/plataforma/presentation/AbstractResourceIT.java
-/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/plataforma/presentation/BaseResourceIT.java
-/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/plataforma/test/container/DefaultPostgresContainer.java
-/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/plataforma/ApiApplicationTests.java
+/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/orders/test/container/DefaultPostgresContainer.java
+/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/orders/domain/RestResponsePage.java
+/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/orders/ApiApplicationTests.java
+/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/orders/presentation/BaseResourceIT.java
+/opt/devs/projects/aasb/aasb-orders-api/src/test/java/br/com/aasb/orders/presentation/AbstractResourceIT.java

@@ -11,7 +11,10 @@ import br.com.aasb.orders.application.dto.OrderDto;
 import br.com.aasb.orders.domain.model.OrderEntity;
 import br.com.aasb.orders.domain.model.OrderItemEntity;
 import br.com.aasb.orders.domain.service.OrderService;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class OrderApplicationService {
 	
@@ -27,19 +30,24 @@ public class OrderApplicationService {
 		 return new OrderDto(entity);
 	}
 
+	@Transactional
 	public void processaOrder(OrderDto order) {
-		OrderEntity entity = order.buildOrder();
-		entity.setStatus("PROCESSED");
-		
-		Optional<OrderEntity> pedidoJaCalculado = orderService.findOrderById(order.getOrderId());
-		
-		if (pedidoJaCalculado.isEmpty()) {		
-			BigDecimal totalPrice = entity.getItems().stream()
-		            .map(OrderItemEntity::getPrice) 
-		            .reduce(BigDecimal.ZERO, BigDecimal::add);    
+		try {
+			OrderEntity entity = order.buildOrder();
+			entity.setStatus("PROCESSED");
 			
-			entity.setTotalAmount(totalPrice);
-			orderService.saveOrder(entity);
+			Optional<OrderEntity> pedidoJaCalculado = orderService.findOrderById(order.getOrderId());
+			
+			if (pedidoJaCalculado.isEmpty()) {		
+				BigDecimal totalPrice = entity.getItems().stream()
+			            .map(OrderItemEntity::getPrice) 
+			            .reduce(BigDecimal.ZERO, BigDecimal::add);    
+				
+				entity.setTotalAmount(totalPrice);
+				orderService.saveOrder(entity);
+			}
+		} catch (Exception e) {
+			log.error("Erro ao processar o pedido: {}", order);
 		}
 	}	
 	
