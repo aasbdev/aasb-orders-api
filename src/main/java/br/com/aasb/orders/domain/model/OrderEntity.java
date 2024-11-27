@@ -36,6 +36,9 @@ public class OrderEntity {
 	
 	private String status; // PENDING, PROCESSED, SENT
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "order")
 	private List<OrderItemEntity> items;
+	
+	@Version
+    private int versao;
 }

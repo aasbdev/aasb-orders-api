@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,6 +18,9 @@ import br.com.aasb.orders.application.dto.OrderDto;
 import br.com.aasb.orders.domain.model.OrderEvent;
 import br.com.aasb.orders.infra.message.OrderMessage;
 
+
+@RestController
+@RequestMapping("/load")
 public class ProdutoADadosResources {
 
 	@Autowired

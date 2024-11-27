@@ -3,6 +3,7 @@ CREATE TABLE `orders` (
   `client_id` varchar(255) NOT NULL,
   `status` varchar(20) NOT NULL,
   `total_amount` DECIMAL NOT NULL,
+  `versao` int NOT NULL,
   PRIMARY KEY (`id`)
 );
 
